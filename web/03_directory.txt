@@ -1,0 +1,6 @@
+
+wget -r -np https://directory.web.actf.co/
+
+grep -r actf
+
+directory.web.actf.co/3054.html:actf{y0u_f0und_me_b51d0cde76739fa3}
